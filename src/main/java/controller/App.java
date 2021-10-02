@@ -1,8 +1,7 @@
 package controller;
 
-import model.MemberIds;
-import model.Member;
 import view.ConsoleUi;
+import model.Register;
 
 /**
  * Responsible for staring the application.
@@ -14,12 +13,9 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    Member member = new Member(new MemberIds());
-    System.out.println(member.getId());
-
     ConsoleUi ui = new ConsoleUi();
-    MemberController controller = new MemberController(member, ui);
+    Register register = new Register();
+    MemberController controller = new MemberController(register, ui);
 
-    controller.doSomethingSimple(ui);
-  }
+    controller.start();  }
 }
