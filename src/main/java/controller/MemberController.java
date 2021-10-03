@@ -2,43 +2,52 @@ package controller;
 
 import view.ConsoleUi;
 import model.Register;
+import model.Member;
 
 public class MemberController {
+ // private Member member;
   private Register register;
   private ConsoleUi ui;
   
+  //  MemberController(Member member, Register register, ConsoleUi ui) {
   MemberController(Register register, ConsoleUi ui) {
+   // this.member = member;
     this.register = register;
     this.ui = ui;
   }
 
   public void start() {
-    ui.showMainMenu();
+    while(!ui.wantsToQuit()) {
+      ui.showMainMenu();
 
-    String input = ui.getInput();
+      if (ui.wantsToCreateMember()) {
+        this.createMember();
+        ui.showMessage("Member created!");
+        ui.showMessage("Id created");
+      } else if (ui.wantsToManageMember()) {
+        String idInput = ui.askForIdIdentification();
 
-    if (input.equals("1")) {
-      createMember();
-    } else if (input.equals("2")) {
-      // TODO: Manage member
-    } else if (input.equals("3")) {
-      // TODO: Verbose list
-    } else if (input.equals("4")) {
-      // TODO: Compact List
-    } else if (input.equals("5")) {
-      // TODO: Quit application.
+        try {
+          Member member = register.searchMember(idInput);
+          System.out.println(member.getName());
+          System.out.println(member.getId());
+        } catch(Exception err) {
+          ui.showMessage(err.getMessage());
+        }
+    
+      } else if (ui.wantsToShowVerboseList()) {
+         System.out.println("Welcome to V-list");
+      } else if (ui.wantsToShowCompactList()) {
+        System.out.println("Welcome to C-list");
+      } else if (ui.wantsToQuit()) {
+        ui.showMessage("Quitting application...");
+      }
     }
   }
 
   private void createMember() {
-    String name = "";
-    String personalNumber = "";
-
-    ui.askForName();
-    name = ui.getInput();
-
-    ui.askForPersonalNumber();
-    personalNumber = ui.getInput();
+    String name = ui.askForName();
+    String personalNumber = ui.askForPersonalNumber();
 
     register.addMember(name, personalNumber);
   }

@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 /**
- * This is just an example contoller class. You should remove it.
+ *
  */
 public class ConsoleUi {
   Scanner scanner;
@@ -22,22 +22,14 @@ public class ConsoleUi {
   public void showMessage(String message) {
     System.out.println(message);
   }
-  public void askForName(){
-    System.out.println("What is your first name?");
-    input = scanner.nextLine();
-  }
-  public void askForPersonalNumber(){
-    System.out.println("What is your personal number?");
-    input = scanner.nextLine();
-  }
 
-  public void showMainMenu(){
+  public void showMainMenu() {
     System.out.println("MAIN MENU ");
     System.out.println("Create member, press 1 ");
     System.out.println("Manage member, press 2");
     System.out.println("Show verbose list, press 3 ");
     System.out.println("Show compact list, press 4 ");
-    System.out.println("Quit application, press 5 ");
+    System.out.println("Quit application, press 'q' ");
 
     input = scanner.nextLine();
   }
@@ -49,11 +41,53 @@ public class ConsoleUi {
     System.out.println("Add boat (4): ");
     System.out.println("Manage boats (5): ");
     System.out.println("Go back to Main Menu (6): ");
+
+    input = scanner.nextLine();
+  }
+
+  public void boatMenu() {
+    System.out.println("Edit boat (1): ");
+    System.out.println("Delete boat (1): ");
+    System.out.println("Go back (1): ");
+
+    input = scanner.nextLine();
+  }
+
+  public boolean wantsToCreateMember() {
+    return input.equals("1");
+  }
+
+  public boolean wantsToManageMember() {
+    return input.equals("2");
+  }
+
+  public boolean wantsToShowVerboseList() {
+    return input.equals("3");
+  }
+
+  public boolean wantsToShowCompactList() {
+    return input.equals("4");
+  }
+
+  public boolean wantsToQuit() {
+    return input.equals("q");
+  }
+
+    public String askForName() {
+    System.out.println("What is your first name?");
+    input = scanner.nextLine();
+
+    return input;
+  }
+
+  public String askForPersonalNumber() {
+    System.out.println("What is your personal number?");
+    return input = scanner.nextLine();
   }
 
   public void changeMemberInformation() {
     System.out.println("Change name: ");
-    String newName = scanner.nextLine();
+    input = scanner.nextLine();
   }
    
   public void boatSubMenu() {
@@ -64,21 +98,13 @@ public class ConsoleUi {
     int length = scanner.nextInt();
   }
 
-  public void idIdentification(){
+  public String askForIdIdentification() {
     System.out.println("Enter memberId?");
-     String memberId = scanner.nextLine();
-     // getMember
-  }
-
-  public void showCompactList() {
-
-  }
-
-  public void showVerboseList() {
-     
+    
+    return input = scanner.nextLine();
   }
 
   public String getInput() {
-    return input;
+    return this.input;
   }
 }

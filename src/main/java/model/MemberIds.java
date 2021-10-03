@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MemberIds {
-  ArrayList<Integer> ids;
+  ArrayList<String> ids;
   
   public MemberIds() {
     this.ids = new ArrayList<>();
   }
 
-  public Integer generateUniqueId() {
+  public String generateUniqueId() {
     Random random = new Random();
-    Integer randomId = random.nextInt();
+    Integer randomIdNumber = random.nextInt();
 
+    String id = Integer.toString(randomIdNumber);
     // boolean unique = checkUniqueness(randomId);
 
     // if(!unique) {
       // generateUniqueId();
     // }
 
-    return randomId;
+    return id;
   }
 
-  public boolean checkUniqueness(Integer randomId) {
+  public boolean checkUniqueness(String randomId) {
     boolean uniqueness = false;
 
     for (int i = 0; i < this.ids.size(); i++) {

@@ -3,14 +3,17 @@ package model;
 public class Member {
   private String name;
   private String personalNumber;
-  private Integer id;
+  private String id;
 
   public Member(String name, String personalNumber) {
     this.name = name;
     this.personalNumber = personalNumber;
   }
  
-  public String getName() {
+  public Member() {
+  }
+
+public String getName() {
     return name;
   }
 
@@ -26,11 +29,11 @@ public class Member {
     this.personalNumber = personalNumber;
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 }
