@@ -6,8 +6,8 @@ import model.Member;
 
 public class MemberController {
  // private Member member;
-  private Register register;
-  private ConsoleUi ui;
+  private final Register register;
+  private final ConsoleUi ui;
   
   //  MemberController(Member member, Register register, ConsoleUi ui) {
   MemberController(Register register, ConsoleUi ui) {
@@ -30,6 +30,7 @@ public class MemberController {
         try {
           Member member = register.searchMember(idInput);
           System.out.println(member.getName());
+          System.out.println(member.getPersonalNumber());
           System.out.println(member.getId());
         } catch(Exception err) {
           ui.showMessage(err.getMessage());
