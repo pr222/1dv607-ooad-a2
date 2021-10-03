@@ -23,6 +23,11 @@ public class ConsoleUi {
     System.out.println(message);
   }
 
+  public void showPressAnyKeyToContinue() {
+    System.out.println("Press any key to continue...");
+    scanner.nextLine();
+  }
+
   public void showMainMenu() {
     System.out.println("MAIN MENU ");
     System.out.println("Create member, press 1 ");
@@ -40,7 +45,7 @@ public class ConsoleUi {
     System.out.println("Delete member (3): ");
     System.out.println("Add boat (4): ");
     System.out.println("Manage boats (5): ");
-    System.out.println("Go back to Main Menu (6): ");
+    System.out.println("Go back ('b'): ");
 
     input = scanner.nextLine();
   }
@@ -51,6 +56,12 @@ public class ConsoleUi {
     System.out.println("Go back (1): ");
 
     input = scanner.nextLine();
+  }
+
+  public void showCompactInfo(String name, String memberId) {
+    System.out.println("Member");
+    System.out.println("Name: " + name);
+    System.out.println("MemberId: " + memberId);
   }
 
   public boolean wantsToCreateMember() {
@@ -73,6 +84,23 @@ public class ConsoleUi {
     return input.equals("q");
   }
 
+//För Manage membermeny
+  public boolean wantsToDisplayInfo() {
+    return input.equals("1");
+  }
+
+  public boolean wantsToEditMemberInformation(){
+    return input.equals("2");
+  }
+
+   public boolean wantsToDeleteMemberInformation(){
+    return input.equals("3");
+  }
+
+  public boolean wantsToGoBack() {
+    return input.equals("b");   
+  }
+
     public String askForName() {
     System.out.println("What is your first name?");
     input = scanner.nextLine();
@@ -85,9 +113,9 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
-  public void changeMemberInformation() {
+  public String changeMemberInformation() {
     System.out.println("Change name: ");
-    input = scanner.nextLine();
+    return input = scanner.nextLine();
   }
    
   public void boatSubMenu() {

@@ -12,6 +12,14 @@ public class Register  {
     ids = new MemberIds();
   }
 
+  public ArrayList<Member> getMembers() {
+    return members;
+  }
+
+  public void addMember(Member member) {
+    members.add(member);
+  }
+
   public void addMember(String name, String personalNumber) {
     Member member = new Member(name, personalNumber);
 
@@ -38,5 +46,10 @@ public class Register  {
     }
 
     return member;
+  }
+
+  public void deleteMember(Member member) {
+    members.remove(member);
+    System.out.println(member);
   }
 } 

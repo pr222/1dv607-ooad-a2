@@ -5,15 +5,21 @@ public class Member {
   private String personalNumber;
   private String id;
 
+  public Member() {
+  }
+  
   public Member(String name, String personalNumber) {
     this.name = name;
     this.personalNumber = personalNumber;
   }
- 
-  public Member() {
+
+  public Member(String name, String personalNumber, String id) {
+    this.name = name;
+    this.personalNumber = personalNumber;
+    this.id = id;
   }
 
-public String getName() {
+  public String getName() {
     return name;
   }
 
