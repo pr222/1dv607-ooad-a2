@@ -4,29 +4,32 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * 
+ * Makes uniqe ids for members.
  */
 public class MemberIds {
   ArrayList<String> ids;
-  
+
   public MemberIds() {
     this.ids = new ArrayList<>();
   }
 
+  /**
+   * Makes ids for members.
+   */
   public String generateUniqueId() {
     Random random = new Random();
     Integer randomIdNumber = random.nextInt();
 
     String id = Integer.toString(randomIdNumber);
-    // boolean unique = checkUniqueness(randomId);
-
-    // if(!unique) {
-    // generateUniqueId();
-    // }
 
     return id;
   }
 
+  /**
+   * Checks that the id isnt used before.
+   * 
+   * @param randomId  - generated member-id.
+   */
   public boolean checkUniqueness(String randomId) {
     boolean uniqueness = false;
 
@@ -37,5 +40,4 @@ public class MemberIds {
     }
     return uniqueness;
   }
-
 }

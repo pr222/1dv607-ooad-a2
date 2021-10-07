@@ -1,7 +1,8 @@
 package model;
- /**
-  * This method returns and changes members
-  */
+
+/**
+ * This method returns and changes members.
+ */
 public class Member {
   private String name;
   private String personalNumber;
@@ -65,11 +66,11 @@ public class Member {
     return id;
   }
 
- /**
-  * Sets id for members 
-  *
-  * @param id a string of numbers and letters for each member.
-  */
+  /**
+   * Sets id for members.
+   *
+   * @param id a string of numbers and letters for each member.
+   */
   public void setId(String id) {
     this.id = id;
   }

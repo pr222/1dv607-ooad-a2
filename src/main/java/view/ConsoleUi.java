@@ -3,7 +3,7 @@ package view;
 import java.util.Scanner;
 
 /**
- *
+ *  Prints menues and takes input.
  */
 public class ConsoleUi {
   Scanner scanner;
@@ -13,19 +13,24 @@ public class ConsoleUi {
     scanner = new Scanner(System.in);
     input = "";
   }
-  
+
   /**
    * Shows a message by printing it to the console.
-
+   *
    * @param message The message to show.
    */
   public void showMessage(String message) {
     System.out.println(message);
   }
 
-  public void showPressAnyKeyToContinue() {
+  public void promptToContinue() {
     System.out.println("Press any key to continue...");
     scanner.nextLine();
+  }
+
+  public String askForInput(String question) {
+    System.out.println(question);
+    return input = scanner.nextLine();
   }
 
   public void showMainMenu() {
@@ -84,7 +89,7 @@ public class ConsoleUi {
     return input.equals("q");
   }
 
-//För Manage membermeny
+  // För Manage membermeny
   public boolean wantsToDisplayInfo() {
     return input.equals("1");
   }
@@ -93,15 +98,15 @@ public class ConsoleUi {
     return input.equals("2");
   }
 
-   public boolean wantsToDeleteMemberInformation() {
+  public boolean wantsToDeleteMemberInformation() {
     return input.equals("3");
   }
 
   public boolean wantsToGoBack() {
-    return input.equals("b");   
+    return input.equals("b");
   }
 
-    public String askForName() {
+  public String askForName() {
     System.out.println("What is your first name?");
     input = scanner.nextLine();
 
@@ -117,7 +122,7 @@ public class ConsoleUi {
     System.out.println("Change name: ");
     return input = scanner.nextLine();
   }
-   
+
   public void boatSubMenu() {
     System.out.println("Enter boat type: ");
     String type = scanner.nextLine();
@@ -128,11 +133,7 @@ public class ConsoleUi {
 
   public String askForIdIdentification() {
     System.out.println("Enter memberId?");
-    
-    return input = scanner.nextLine();
-  }
 
-  public String getInput() {
-    return this.input;
+    return input = scanner.nextLine();
   }
 }

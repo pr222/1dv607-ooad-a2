@@ -5,7 +5,7 @@ import model.Register;
 import view.ConsoleUi;
 
 /**
- * Class deligate to model and view
+ * Class deligate to model and view.
  */
 public class MemberController {
   private final Register register;
@@ -17,8 +17,8 @@ public class MemberController {
   }
 
   /**
-  * This method starts the main menu.
-  */
+   * This method starts the main menu.
+   */
   public void startMainMenu() {
     while (!ui.wantsToQuit()) {
       ui.showMainMenu();
@@ -74,14 +74,14 @@ public class MemberController {
 
   private void createCompactList(Member member) {
     ui.showCompactInfo(member.getName(), member.getId());
-    ui.showPressAnyKeyToContinue();
+    ui.promptToContinue();
   }
 
   private void editMemberInfo(Member member) {
     String newName = ui.changeMemberInformation();
     member.setName(newName);
     ui.showMessage("Name is changed");
-    ui.showPressAnyKeyToContinue();
+    ui.promptToContinue();
   }
 
   private void deleteMemberInfo(Member member) {
@@ -94,12 +94,12 @@ public class MemberController {
       ui.showCompactInfo(mem.getName(), mem.getId());
     }
 
-    ui.showPressAnyKeyToContinue();
+    ui.promptToContinue();
   }
 
   private void getVerboseList() {
     ui.showMessage("Welcome to Verbose List");
-    ui.showPressAnyKeyToContinue();
+    ui.promptToContinue();
   }
 
   private void quit() {
