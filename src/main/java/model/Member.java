@@ -1,7 +1,7 @@
 package model;
 
 /**
- * This method returns and changes members.
+ * Member with its information and boats.
  */
 public class Member {
   private String name;

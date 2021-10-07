@@ -38,8 +38,8 @@ public class MemberController {
   }
 
   private void createMember() {
-    String name = ui.askForName();
-    String personalNumber = ui.askForPersonalNumber();
+    String name = ui.askForInput("What is your name?");
+    String personalNumber = ui.askForInput("What is your personal number?");
 
     register.addMember(name, personalNumber);
     ui.showMessage("Member created!");
@@ -47,7 +47,7 @@ public class MemberController {
 
   private void handleMemberMenu() {
     try {
-      String idInput = ui.askForIdIdentification();
+      String idInput = ui.askForInput("What is your id?");
       Member member = register.searchMember(idInput);
       
       startMemberMenu(member);
@@ -78,8 +78,9 @@ public class MemberController {
   }
 
   private void editMemberInfo(Member member) {
-    String newName = ui.changeMemberInformation();
+    String newName = ui.askForInput("Change name: ");
     member.setName(newName);
+
     ui.showMessage("Name is changed");
     ui.promptToContinue();
   }
@@ -87,6 +88,12 @@ public class MemberController {
   private void deleteMemberInfo(Member member) {
     register.deleteMember(member);
     ui.showMessage("Deleting member...");
+  }
+
+  
+  private void boatSubMenu() {
+    String type = ui.askForInput("Enter boat type: ");
+    String length = ui.askForInput("Enter length of the boat: ");
   }
 
   private void getCompactList() {

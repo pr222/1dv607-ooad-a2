@@ -18,6 +18,7 @@ public class ConsoleUi {
    * Shows a message by printing it to the console.
    *
    * @param message The message to show.
+   * 
    */
   public void showMessage(String message) {
     System.out.println(message);
@@ -33,6 +34,9 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
+  /**
+   * This method prints a main menu.
+   */
   public void showMainMenu() {
     System.out.println("MAIN MENU ");
     System.out.println("Create member, press 1 ");
@@ -104,36 +108,5 @@ public class ConsoleUi {
 
   public boolean wantsToGoBack() {
     return input.equals("b");
-  }
-
-  public String askForName() {
-    System.out.println("What is your first name?");
-    input = scanner.nextLine();
-
-    return input;
-  }
-
-  public String askForPersonalNumber() {
-    System.out.println("What is your personal number?");
-    return input = scanner.nextLine();
-  }
-
-  public String changeMemberInformation() {
-    System.out.println("Change name: ");
-    return input = scanner.nextLine();
-  }
-
-  public void boatSubMenu() {
-    System.out.println("Enter boat type: ");
-    String type = scanner.nextLine();
-
-    System.out.println("Enter length of the boat: ");
-    int length = scanner.nextInt();
-  }
-
-  public String askForIdIdentification() {
-    System.out.println("Enter memberId?");
-
-    return input = scanner.nextLine();
   }
 }

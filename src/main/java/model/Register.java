@@ -28,6 +28,7 @@ public class Register {
    *
    * @param name           - name for the member.
    * @param personalNumber - personal number for the member
+   * 
    */
   public void addMember(String name, String personalNumber) {
     Member member = new Member(name, personalNumber);
@@ -44,6 +45,7 @@ public class Register {
    *
    * @param memberId - The Id of the member to find.
    * @throws Exception - When no member was found.
+   * 
    */
   public Member searchMember(String memberId) throws Exception {
     boolean found = false;
@@ -67,6 +69,7 @@ public class Register {
    * Deletes a member from the register.
    * 
    * @param member  - object of class Member.
+   * 
    */
   public void deleteMember(Member member) {
     members.remove(member);
