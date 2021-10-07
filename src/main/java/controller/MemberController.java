@@ -1,9 +1,12 @@
 package controller;
 
-import view.ConsoleUi;
-import model.Register;
 import model.Member;
+import model.Register;
+import view.ConsoleUi;
 
+/**
+ * Class deligate to model and view
+ */
 public class MemberController {
   private final Register register;
   private final ConsoleUi ui;
@@ -13,8 +16,11 @@ public class MemberController {
     this.ui = ui;
   }
 
+  /**
+  * This method starts the main menu.
+  */
   public void startMainMenu() {
-    while(!ui.wantsToQuit()) {
+    while (!ui.wantsToQuit()) {
       ui.showMainMenu();
 
       if (ui.wantsToCreateMember()) {
@@ -44,17 +50,14 @@ public class MemberController {
       String idInput = ui.askForIdIdentification();
       Member member = register.searchMember(idInput);
       
-      // initiate a memberMenu-class-object?
-      // Menu menu = new Menu(member, ui); 
-      // menu.startMemberMenu();
       startMemberMenu(member);
-    } catch(Exception err) {
+    } catch (Exception err) {
       ui.showMessage(err.getMessage());
     }
   }
 
   private void startMemberMenu(Member member) {
-    while(!ui.wantsToGoBack()) {
+    while (!ui.wantsToGoBack()) {
       ui.memberMenu();
 
       if (ui.wantsToDisplayInfo()) {
@@ -69,29 +72,28 @@ public class MemberController {
     }
   }
 
-  private void createCompactList(Member member){
+  private void createCompactList(Member member) {
     ui.showCompactInfo(member.getName(), member.getId());
     ui.showPressAnyKeyToContinue();
   }
 
-  private void editMemberInfo(Member member){
+  private void editMemberInfo(Member member) {
     String newName = ui.changeMemberInformation();
     member.setName(newName);
     ui.showMessage("Name is changed");
     ui.showPressAnyKeyToContinue();
   }
 
-  private void deleteMemberInfo(Member member){
+  private void deleteMemberInfo(Member member) {
     register.deleteMember(member);
     ui.showMessage("Deleting member...");
-    // break;
-
   }
 
   private void getCompactList() {
-    for(Member mem : register.getMembers()) {
+    for (Member mem : register.getMembers()) {
       ui.showCompactInfo(mem.getName(), mem.getId());
     }
+
     ui.showPressAnyKeyToContinue();
   }
 
@@ -101,8 +103,6 @@ public class MemberController {
   }
 
   private void quit() {
-    // Place to save for persistance?
     ui.showMessage("Quitting application...");
-  }
-  
+  } 
 }

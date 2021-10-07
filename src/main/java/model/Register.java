@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.lang.Exception;
 
+/**
+ * Register class for CRUD functionalities.
+ */
 public class Register  {
   ArrayList<Member> members;
   MemberIds ids;

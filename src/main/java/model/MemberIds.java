@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * 
+ */
 public class MemberIds {
   ArrayList<String> ids;
   
@@ -18,7 +21,7 @@ public class MemberIds {
     // boolean unique = checkUniqueness(randomId);
 
     // if(!unique) {
-      // generateUniqueId();
+    // generateUniqueId();
     // }
 
     return id;
@@ -28,7 +31,7 @@ public class MemberIds {
     boolean uniqueness = false;
 
     for (int i = 0; i < this.ids.size(); i++) {
-      if (randomId.equals(i)) {
+      if (randomId.equals(ids.get(i))) {
         uniqueness = true;
       }
     }

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Information of boat.
+ */
 public class Boat {
   private String type;
   private int length;

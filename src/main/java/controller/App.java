@@ -1,8 +1,8 @@
 package controller;
 
-import view.ConsoleUi;
-import model.Register;
 import model.Member;
+import model.Register;
+import view.ConsoleUi;
 
 /**
  * Responsible for staring the application.
@@ -26,5 +26,6 @@ public class App {
 
     MemberController controller = new MemberController(register, ui);
 
-    controller.startMainMenu();  }
+    controller.startMainMenu();
+  }
 }
