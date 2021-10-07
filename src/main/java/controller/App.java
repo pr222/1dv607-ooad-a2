@@ -26,5 +26,5 @@ public class App {
 
     MemberController controller = new MemberController(register, ui);
 
-    controller.start();  }
+    controller.startMainMenu();  }
 }

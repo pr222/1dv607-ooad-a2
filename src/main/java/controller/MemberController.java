@@ -5,67 +5,28 @@ import model.Register;
 import model.Member;
 
 public class MemberController {
- // private Member member;
   private final Register register;
   private final ConsoleUi ui;
   
-  //  MemberController(Member member, Register register, ConsoleUi ui) {
   MemberController(Register register, ConsoleUi ui) {
-   // this.member = member;
     this.register = register;
     this.ui = ui;
   }
 
-  public void start() {
+  public void startMainMenu() {
     while(!ui.wantsToQuit()) {
       ui.showMainMenu();
 
       if (ui.wantsToCreateMember()) {
-        this.createMember();
-        ui.showMessage("Member created!");
-        ui.showMessage("Id created");
+        createMember();
       } else if (ui.wantsToManageMember()) {
-        String idInput = ui.askForIdIdentification();
-
-        try {
-          //Sparar member för member-meny
-          Member member = register.searchMember(idInput);
-          System.out.println("Id har matchats" + member.getName());
-          // boolean isDeleted = false;
-
-          // Håller oss i Member-menyn
-          while(!ui.wantsToGoBack()) {
-            ui.memberMenu();
-
-            if (ui.wantsToDisplayInfo()) {
-              // Display member info
-              ui.showCompactInfo(member.getName(), member.getId());
-              ui.showPressAnyKeyToContinue();
-            } else if (ui.wantsToEditMemberInformation()) {
-              // Change member name
-              member.setName(ui.changeMemberInformation());
-              ui.showMessage("Name is changed");
-              ui.showPressAnyKeyToContinue();
-            } else if (ui.wantsToDeleteMemberInformation()) {
-              // Delete member.
-              ui.showMessage("Deleting member...");
-              // isDeleted = true;
-              register.deleteMember(member);
-              break;
-            } else if (ui.wantsToGoBack()) {
-              // Going back to main menu
-              ui.showMessage("Going back...");
-            }
-          }
-        } catch(Exception err) {
-          ui.showMessage(err.getMessage());
-        }
+        handleMemberMenu();
       } else if (ui.wantsToShowVerboseList()) {
-         System.out.println("Welcome to Verbose");
+        getVerboseList();
       } else if (ui.wantsToShowCompactList()) {
-          getCompactList();
+        getCompactList();
       } else if (ui.wantsToQuit()) {
-         ui.showMessage("Quitting application...");
+        quit();
       }
     }
   }
@@ -75,12 +36,73 @@ public class MemberController {
     String personalNumber = ui.askForPersonalNumber();
 
     register.addMember(name, personalNumber);
+    ui.showMessage("Member created!");
+  }
+
+  private void handleMemberMenu() {
+    try {
+      String idInput = ui.askForIdIdentification();
+      Member member = register.searchMember(idInput);
+      
+      // initiate a memberMenu-class-object?
+      // Menu menu = new Menu(member, ui); 
+      // menu.startMemberMenu();
+      startMemberMenu(member);
+    } catch(Exception err) {
+      ui.showMessage(err.getMessage());
+    }
+  }
+
+  private void startMemberMenu(Member member) {
+    while(!ui.wantsToGoBack()) {
+      ui.memberMenu();
+
+      if (ui.wantsToDisplayInfo()) {
+        createCompactList(member);
+      } else if (ui.wantsToEditMemberInformation()) {
+        editMemberInfo(member);
+      } else if (ui.wantsToDeleteMemberInformation()) {     
+        deleteMemberInfo(member);
+      } else if (ui.wantsToGoBack()) {
+        ui.showMessage("Going back...");
+      }
+    }
+  }
+
+  private void createCompactList(Member member){
+    ui.showCompactInfo(member.getName(), member.getId());
+    ui.showPressAnyKeyToContinue();
+  }
+
+  private void editMemberInfo(Member member){
+    String newName = ui.changeMemberInformation();
+    member.setName(newName);
+    ui.showMessage("Name is changed");
+    ui.showPressAnyKeyToContinue();
+  }
+
+  private void deleteMemberInfo(Member member){
+    register.deleteMember(member);
+    ui.showMessage("Deleting member...");
+    // break;
+
   }
 
   private void getCompactList() {
     for(Member mem : register.getMembers()) {
       ui.showCompactInfo(mem.getName(), mem.getId());
-   }
-   ui.showPressAnyKeyToContinue();
+    }
+    ui.showPressAnyKeyToContinue();
   }
+
+  private void getVerboseList() {
+    ui.showMessage("Welcome to Verbose List");
+    ui.showPressAnyKeyToContinue();
+  }
+
+  private void quit() {
+    // Place to save for persistance?
+    ui.showMessage("Quitting application...");
+  }
+  
 }

@@ -89,11 +89,11 @@ public class ConsoleUi {
     return input.equals("1");
   }
 
-  public boolean wantsToEditMemberInformation(){
+  public boolean wantsToEditMemberInformation() {
     return input.equals("2");
   }
 
-   public boolean wantsToDeleteMemberInformation(){
+   public boolean wantsToDeleteMemberInformation() {
     return input.equals("3");
   }
 
