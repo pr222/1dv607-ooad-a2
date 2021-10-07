@@ -28,7 +28,7 @@ public class MemberIds {
   /**
    * Checks that the id isnt used before.
    * 
-   * @param randomId  - generated member-id.
+   * @param randomId       - generated member-id.
    * 
    */
   public boolean checkUniqueness(String randomId) {

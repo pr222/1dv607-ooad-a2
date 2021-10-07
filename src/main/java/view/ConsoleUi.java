@@ -48,7 +48,10 @@ public class ConsoleUi {
     input = scanner.nextLine();
   }
 
-  public void memberMenu() {
+  /**
+   * This method prints a member menu.
+   */
+  public void memberMenu() { 
     System.out.println("Display member information (1): ");
     System.out.println("Edit member information (2): ");
     System.out.println("Delete member (3): ");
@@ -59,6 +62,9 @@ public class ConsoleUi {
     input = scanner.nextLine();
   }
 
+  /**
+   * This method prints a boat menu.
+   */
   public void boatMenu() {
     System.out.println("Edit boat (1): ");
     System.out.println("Delete boat (1): ");
@@ -66,7 +72,10 @@ public class ConsoleUi {
 
     input = scanner.nextLine();
   }
-
+  
+  /**
+   * This method prints a compact list.
+   */
   public void showCompactInfo(String name, String memberId) {
     System.out.println("Member");
     System.out.println("Name: " + name);

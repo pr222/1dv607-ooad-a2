@@ -68,7 +68,7 @@ public class Register {
   /**
    * Deletes a member from the register.
    * 
-   * @param member  - object of class Member.
+   * @param member      - object of class Member.
    * 
    */
   public void deleteMember(Member member) {

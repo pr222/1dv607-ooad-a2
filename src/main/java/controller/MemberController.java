@@ -12,8 +12,10 @@ public class MemberController {
   private final ConsoleUi ui;
   
   MemberController(Register register, ConsoleUi ui) {
-    this.register = register;
     this.ui = ui;
+
+    Storage store = new Storage();
+    this.register = store.loadMemberData(register);
   }
 
   /**
