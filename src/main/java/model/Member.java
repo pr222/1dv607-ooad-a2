@@ -6,7 +6,7 @@ package model;
 public class Member {
   private String name;
   private String personalNumber;
-  private String id;
+  private Id id;
 
   public Member() {
   }
@@ -19,7 +19,7 @@ public class Member {
   /**
    * This constructs a new member.
    */
-  public Member(String name, String personalNumber, String id) {
+  public Member(String name, String personalNumber, Id id) {
     this.name = name;
     this.personalNumber = personalNumber;
     this.id = id;
@@ -62,7 +62,7 @@ public class Member {
    *
    * @return - The id.
    */
-  public String getId() {
+  public Id getId() {
     return id;
   }
 
@@ -71,7 +71,7 @@ public class Member {
    *
    * @param id a string of numbers and letters for each member.
    */
-  public void setId(String id) {
+  public void setId(Id id) {
     this.id = id;
   }
 }

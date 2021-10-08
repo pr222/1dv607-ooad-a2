@@ -8,11 +8,9 @@ import java.util.ArrayList;
  */
 public class Register {
   ArrayList<Member> members;
-  MemberIds ids;
 
   public Register() {
     members = new ArrayList<>();
-    ids = new MemberIds();
   }
 
   public ArrayList<Member> getMembers() {
@@ -31,13 +29,31 @@ public class Register {
    * 
    */
   public void addMember(String name, String personalNumber) {
-    Member member = new Member(name, personalNumber);
+    IdGenerator generator = new IdGenerator();
+    boolean checkedForUniqueness = false;
+    Id id = generator.generateId();
 
-    String id = ids.generateUniqueId();
+    while (!checkedForUniqueness) {
+      boolean isTaken = checkIfTaken(id); 
+      
+      if (isTaken) {
+        id = generator.generateId();
+      } else {
+        checkedForUniqueness = true;
+      }
+    }
 
-    member.setId(id);
-
+    Member member = new Member(name, personalNumber, id);
     members.add(member);
+  }
+
+  private boolean checkIfTaken(Id id) {
+    for (Member m : members) {
+      if (id.equals(m.getId())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -48,11 +64,13 @@ public class Register {
    * 
    */
   public Member searchMember(String memberId) throws Exception {
+    System.out.println("Memberid: " + memberId);
     boolean found = false;
     Member member = new Member();
 
     for (int i = 0; i < members.size(); i++) {
-      if (members.get(i).getId().equals(memberId)) {
+      System.out.println("ID? " + members.get(i).getId().toString());
+      if (members.get(i).getId().toString().equals(memberId)) {
         found = true;
         member = members.get(i);
       }

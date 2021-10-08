@@ -68,6 +68,7 @@ public class MemberController {
         editMemberInfo(member);
       } else if (ui.wantsToDeleteMemberInformation()) {     
         deleteMemberInfo(member);
+        break;
       } else if (ui.wantsToGoBack()) {
         ui.showMessage("Going back...");
       }
@@ -75,7 +76,7 @@ public class MemberController {
   }
 
   private void createCompactList(Member member) {
-    ui.showCompactInfo(member.getName(), member.getId());
+    ui.showCompactInfo(member.getName(), member.getId().toString());
     ui.promptToContinue();
   }
 
@@ -100,7 +101,7 @@ public class MemberController {
 
   private void getCompactList() {
     for (Member mem : register.getMembers()) {
-      ui.showCompactInfo(mem.getName(), mem.getId());
+      ui.showCompactInfo(mem.getName(), mem.getId().toString());
     }
 
     ui.promptToContinue();
