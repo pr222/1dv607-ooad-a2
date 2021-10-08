@@ -3,7 +3,10 @@ package controller;
 import model.Member;
 import model.Register;
 
-public class Storage implements IStorage {
+/**
+ * Class that holds data to be read when app starts.
+ */
+public class Storage implements I_Storage {
 
   @Override
   public Register loadMemberData(Register register) {

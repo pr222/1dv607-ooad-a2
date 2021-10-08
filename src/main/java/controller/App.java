@@ -1,6 +1,5 @@
 package controller;
 
-import model.Member;
 import model.Register;
 import view.ConsoleUi;
 
