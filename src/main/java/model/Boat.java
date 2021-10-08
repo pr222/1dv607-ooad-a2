@@ -17,7 +17,15 @@ public class Boat {
     return value;
   }
 
-  public Boat() {
+  public Boat(int enumIndex) {
+    System.out.println("Type values: " + Type.values());
+    for (Type enumType : Type.values()) {
+      System.out.println("Type name: " + enumType.name());
+      // kolla om stämmer med index
+      if (enumType.ordinal() == enumIndex) {
+        this.type = enumType;
+      }
+    }
   }
 
   public Type getType() {

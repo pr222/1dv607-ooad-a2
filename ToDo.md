@@ -1,6 +1,5 @@
 Verbose list-  name, personal number, member id and boats with boat information.
-Register new boat to member, Sailboat, Motorsailer, kayak/Canoe, Other, längd - meter
-    En member ska kunna ha flera båtar
+
 Delete boat
 
 Change boat info, båttyp och längd

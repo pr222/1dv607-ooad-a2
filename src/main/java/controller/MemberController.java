@@ -103,7 +103,6 @@ public class MemberController {
   }
 
   private void addBoat(Member member) {
-    Boat b = new Boat();
     String input = ui.askForInput(
       "Enter a number to choose a boat type: \n" + 
       "Sailboat (0)\n" + 
@@ -111,19 +110,14 @@ public class MemberController {
       "Kayak/Canoe (2)\n" +
       "Other (3)"
     );
-    System.out.println(input);
-    System.out.println(Boat.Type.SAILBOAT.toString());
-    if (input.equals(Boat.Type.SAILBOAT.toString())) {
-      System.out.println("SETTING THE TYPE! :)");
-      b.setType(Boat.Type.SAILBOAT);
-    }
+    int i = Integer.parseInt(input); 
 
-    String length = ui.askForInput("Enter length of the boat: ");
+    Boat b = new Boat(i);
+
+    String length = ui.askForInput("Enter length of the boat in meter: ");
     b.setLength(length);
 
     member.addBoat(b);
-    System.out.println("Nr of boats: " + member.getNrOfBoats());
-    System.out.println(member);
   }
 
   private void getCompactList() {
