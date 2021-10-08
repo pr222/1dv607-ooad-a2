@@ -76,6 +76,7 @@ public class MemberController {
       } else if (ui.wantsToAddBoat()) {
         addBoat(member);
       } else if (ui.wantsToManageBoat()) {
+        chooseBoatToChange(member);
         // List boats
         // Go to boat menu
       } else if (ui.wantsToGoBack()) {
@@ -85,7 +86,12 @@ public class MemberController {
   }
 
   private void createCompactList(Member member) {
-    ui.showCompactInfo(member.getName(), member.getId().toString());
+    ui.showCompactInfo(member);
+    ui.promptToContinue();
+  }
+
+  private void createVerboseList(Member member) {
+    ui.showVerboseInfo(member);
     ui.promptToContinue();
   }
 
@@ -120,9 +126,29 @@ public class MemberController {
     member.addBoat(b);
   }
 
+  private void chooseBoatToChange(Member member){
+    addBoat(member);
+    // String input = ui.askForInput(
+    //   "Which boat information do you want to change: \n" + 
+       
+    // );
+  }
+
+private void changeBoat(){
+   String newType = ui.askForInput("Change type: "); //ENUM
+   String newLenght = ui.askForInput("Change length: "); 
+   
+   
+    member.setName(newName);
+
+    ui.showMessage("Boat information is changed");
+    ui.promptToContinue();
+     
+}
+
   private void getCompactList() {
     for (Member mem : register.getMembers()) {
-      ui.showCompactInfo(mem.getName(), mem.getId().toString());
+      ui.showCompactInfo(mem);
     }
 
     ui.promptToContinue();

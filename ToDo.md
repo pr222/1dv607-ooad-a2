@@ -1,7 +1,5 @@
 Verbose list-  name, personal number, member id and boats with boat information.
 
-Delete boat
-
 Change boat info, båttyp och längd
 //I controller:
 loopa alla båtar i lista,

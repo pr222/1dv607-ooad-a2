@@ -1,6 +1,8 @@
 package view;
 
+// import java.lang.reflect.Member;
 import java.util.Scanner;
+import model.Member;
 
 /**
  *  Prints menues and takes input.
@@ -76,10 +78,21 @@ public class ConsoleUi {
   /**
    * This method prints a compact version of member information.
    */
-  public void showCompactInfo(String name, String memberId) {
+  public void showCompactInfo(Member member) {
     System.out.println("Member");
-    System.out.println("Name: " + name);
-    System.out.println("MemberId: " + memberId);
+    System.out.println("Name: " + member.getName());
+    System.out.println("Member Id: " + member.getId());
+    System.out.println("Number of boats: " + member.getNrOfBoats());
+  }
+
+  /**
+   * This method prints a verbose version of member information.
+   */
+  public void showVerboseInfo(Member member) {
+    System.out.println("Member");
+    System.out.println("Name: " + member.getName());
+    System.out.println("Personal number: " + member.getPersonalNumber());
+    System.out.println("Member Id: " + member.getId());
   }
 
   public boolean wantsToCreateMember() {
