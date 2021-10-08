@@ -10,7 +10,7 @@ public class ConsoleUi {
   String input;
 
   public ConsoleUi() {
-    scanner = new Scanner(System.in);
+    scanner = new Scanner(System.in, "utf-8");
     input = "";
   }
 
@@ -74,7 +74,7 @@ public class ConsoleUi {
   }
   
   /**
-   * This method prints a compact list.
+   * This method prints a compact version of member information.
    */
   public void showCompactInfo(String name, String memberId) {
     System.out.println("Member");

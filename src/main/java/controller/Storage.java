@@ -6,7 +6,7 @@ import model.Register;
 /**
  * Class that holds data to be read when app starts.
  */
-public class Storage implements I_Storage {
+public class Storage implements StorageInterface {
 
   @Override
   public Register loadMemberData(Register register) {
