@@ -1,9 +1,8 @@
 package model;
 
-import model.Id;
-
 import java.util.ArrayList;
 import java.util.Random;
+import model.Id;
 
 /**
  * Generates Id:s with the format "123ABC".
@@ -23,19 +22,19 @@ public class IdGenerator {
     
     ArrayList<Character> idList = new ArrayList<Character>();
 
-    for (int p = 0; p < 3; p++){
+    for (int p = 0; p < 3; p++) {
       int n = random.nextInt(10); 
 
       idList.add(number[n]);
     }
    
-   for (int w = 0; w < 3; w++){
-    int n = random.nextInt(26); 
+    for (int w = 0; w < 3; w++) {
+      int n = random.nextInt(26); 
       idList.add(alphabet[n]); 
     }
 
     StringBuilder builder = new StringBuilder(idList.size());
-    for (Character ch: idList){
+    for (Character ch : idList) {
       builder.append(ch);
     }
 
