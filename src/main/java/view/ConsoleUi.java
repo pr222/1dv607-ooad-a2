@@ -66,9 +66,9 @@ public class ConsoleUi {
    * This method prints a boat menu.
    */
   public void boatMenu() {
-    System.out.println("Edit boat (1): ");
-    System.out.println("Delete boat (1): ");
-    System.out.println("Go back (1): ");
+    System.out.println("Edit boat information (1): ");
+    System.out.println("Delete boat (2): ");
+    System.out.println("Go back ('b'): ");
 
     input = scanner.nextLine();
   }
@@ -117,5 +117,14 @@ public class ConsoleUi {
 
   public boolean wantsToGoBack() {
     return input.equals("b");
+  }
+
+  // För boat
+  public boolean wantsToAddBoat() {
+    return input.equals("4");
+  }
+
+  public boolean wantsToManageBoat() {
+    return input.equals("5");
   }
 }

@@ -4,22 +4,35 @@ package model;
  * Information of boat.
  */
 public class Boat {
-  private String type;
-  private int length;
+  private Type type;
+  private String length;
 
-  public String getType() {
+  public enum Type {
+    SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER
+  }
+
+  public int value;
+
+  public int getValue() {
+    return value;
+  }
+
+  public Boat() {
+  }
+
+  public Type getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(Type type) {
     this.type = type;
   }
 
-  public int getLength() {
+  public String getLength() {
     return length;
   }
 
-  public void setLength(int length) {
+  public void setLength(String length) {
     this.length = length;
   }
 }

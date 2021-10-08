@@ -1,5 +1,6 @@
 package controller;
 
+import model.Boat;
 import model.Member;
 import model.Register;
 import view.ConsoleUi;
@@ -58,6 +59,9 @@ public class MemberController {
     }
   }
 
+  /**
+   * Member menu
+   */
   private void startMemberMenu(Member member) {
     while (!ui.wantsToGoBack()) {
       ui.memberMenu();
@@ -69,6 +73,11 @@ public class MemberController {
       } else if (ui.wantsToDeleteMemberInformation()) {     
         deleteMemberInfo(member);
         break;
+      } else if (ui.wantsToAddBoat()) {
+        addBoat(member);
+      } else if (ui.wantsToManageBoat()) {
+        // List boats
+        // Go to boat menu
       } else if (ui.wantsToGoBack()) {
         ui.showMessage("Going back...");
       }
@@ -93,10 +102,28 @@ public class MemberController {
     ui.showMessage("Deleting member...");
   }
 
-  
-  private void boatSubMenu() {
-    String type = ui.askForInput("Enter boat type: ");
+  private void addBoat(Member member) {
+    Boat b = new Boat();
+    String input = ui.askForInput(
+      "Enter a number to choose a boat type: \n" + 
+      "Sailboat (0)\n" + 
+      "Motorsailer (1) \n" + 
+      "Kayak/Canoe (2)\n" +
+      "Other (3)"
+    );
+    System.out.println(input);
+    System.out.println(Boat.Type.SAILBOAT.toString());
+    if (input.equals(Boat.Type.SAILBOAT.toString())) {
+      System.out.println("SETTING THE TYPE! :)");
+      b.setType(Boat.Type.SAILBOAT);
+    }
+
     String length = ui.askForInput("Enter length of the boat: ");
+    b.setLength(length);
+
+    member.addBoat(b);
+    System.out.println("Nr of boats: " + member.getNrOfBoats());
+    System.out.println(member);
   }
 
   private void getCompactList() {

@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Random;
-import model.Id;
 
 /**
  * Generates Id:s with the format "123ABC".

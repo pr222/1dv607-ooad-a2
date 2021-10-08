@@ -1,18 +1,15 @@
-id-nummer, längd, positiva siffror, alfanumeriska
-    123ABC
-    SifferList 0-9
-    alfabetslista a-z
-
 Verbose list-  name, personal number, member id and boats with boat information.
 Register new boat to member, Sailboat, Motorsailer, kayak/Canoe, Other, längd - meter
     En member ska kunna ha flera båtar
 Delete boat
+
 Change boat info, båttyp och längd
 //I controller:
 loopa alla båtar i lista,
 Bygg upp sträng för val av båtar,
 val = ui.askForInput(Lista med båtalternativ)
 errorhantera, annar gå in i båtens ändringläge//
+
 Simple error handling
 Class diagram
 Sekvensdiagram

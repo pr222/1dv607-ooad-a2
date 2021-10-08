@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Member with its information and boats.
  */
@@ -7,6 +9,7 @@ public class Member {
   private String name;
   private String personalNumber;
   private Id id;
+  private ArrayList<Boat> boats = new ArrayList<>();
 
   public Member() {
   }
@@ -14,6 +17,7 @@ public class Member {
   public Member(String name, String personalNumber) {
     this.name = name;
     this.personalNumber = personalNumber;
+    
   }
 
   /**
@@ -73,5 +77,17 @@ public class Member {
    */
   public void setId(Id id) {
     this.id = id;
+  }
+
+  public void addBoat(Boat boat) {
+    boats.add(boat);
+  }
+
+  public void deleteBoat(Boat boat) {
+    boats.remove(boat);
+  }
+
+  public int getNrOfBoats() {
+    return boats.size();
   }
 }
