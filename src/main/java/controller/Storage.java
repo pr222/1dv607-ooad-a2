@@ -16,7 +16,7 @@ public class Storage implements StorageInterface {
     Id id2 = new Id("991BCO");
 
     Member member1 = new Member("Petra", "222", id1);
-    Member member2 = new Member("Lena", "333", id2);
+    final Member member2 = new Member("Lena", "333", id2);
     Boat boat1 = new Boat(2);
     boat1.setLength("10");
     Boat boat2 = new Boat(1);

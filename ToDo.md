@@ -1,8 +1,7 @@
 
-
-Simple error handling
 Class diagram
 Sekvensdiagram
+Readme.md
 
 Hobbes final advice
 To find out if you have view responsibility in your controller/model you can imagine changing the language of the view. If you need to change things in controller or model you likely have view responsibility in them.
