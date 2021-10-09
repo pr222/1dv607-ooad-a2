@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.Boat;
 import model.Member;
 import model.Register;
@@ -67,7 +69,7 @@ public class MemberController {
       ui.memberMenu();
 
       if (ui.wantsToDisplayInfo()) {
-        createCompactList(member);
+        createCompactInfo(member);
       } else if (ui.wantsToEditMemberInformation()) {
         editMemberInfo(member);
       } else if (ui.wantsToDeleteMemberInformation()) {     
@@ -85,12 +87,18 @@ public class MemberController {
     }
   }
 
-  private void createCompactList(Member member) {
+  private void createCompactInfo(Member member) {
     ui.showCompactInfo(member);
     ui.promptToContinue();
   }
 
-  private void createVerboseList(Member member) {
+  private void getCompactList() {
+    List list = register.getMembers();
+    ui.showCompactList(list);
+    ui.promptToContinue();
+  }
+
+  private void getVerboseList(Member member) {
     ui.showVerboseInfo(member);
     ui.promptToContinue();
   }
@@ -134,31 +142,16 @@ public class MemberController {
     // );
   }
 
-private void changeBoat(){
+private void changeBoat(Member member){
    String newType = ui.askForInput("Change type: "); //ENUM
    String newLenght = ui.askForInput("Change length: "); 
    
    
-    member.setName(newName);
+   //member.setName(newName);
 
     ui.showMessage("Boat information is changed");
     ui.promptToContinue();
      
-}
-
-  private void getCompactList() {
-    for (Member mem : register.getMembers()) {
-      ui.showCompactInfo(mem);
-    }
-
-    ui.promptToContinue();
-  }
-
-  private void getVerboseList() {
-    ui.showMessage("Welcome to Verbose List");
-    ui.promptToContinue();
-  }
-
   private void quit() {
     ui.showMessage("Quitting application...");
   } 

@@ -7,6 +7,9 @@ Bygg upp sträng för val av båtar,
 val = ui.askForInput(Lista med båtalternativ)
 errorhantera, annar gå in i båtens ändringläge//
 
+Private void activeMember - metod
+Istället för att skicka med member som argument överallt
+
 Simple error handling
 Class diagram
 Sekvensdiagram

@@ -2,6 +2,8 @@ package model;
 
 import java.lang.Exception;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Register class for CRUD functionalities.
@@ -12,9 +14,12 @@ public class Register {
   public Register() {
     members = new ArrayList<>();
   }
-
-  public ArrayList<Member> getMembers() {
-    return members;
+  
+  
+  public List<Member> getMembers() {
+    List<Member> readonlyMembers = Collections.unmodifiableList(members);
+    
+    return readonlyMembers;
   }
 
   public void addMember(Member member) {

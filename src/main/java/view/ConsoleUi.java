@@ -1,6 +1,8 @@
 package view;
 
 // import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import model.Member;
 
@@ -83,6 +85,14 @@ public class ConsoleUi {
     System.out.println("Name: " + member.getName());
     System.out.println("Member Id: " + member.getId());
     System.out.println("Number of boats: " + member.getNrOfBoats());
+  }
+
+  public void showCompactList(List<Member> members) {
+    for (int i = 0; i < members.size(); i++) {
+      System.out.println("Name: " + members.get(i).getName());
+      System.out.println("Member Id: " + members.get(i).getId());
+      System.out.println("Number of boats: " + members.get(i).getNrOfBoats());
+    }
   }
 
   /**
