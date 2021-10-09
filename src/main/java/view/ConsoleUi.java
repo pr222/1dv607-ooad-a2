@@ -19,7 +19,7 @@ public class ConsoleUi {
   }
 
   /**
-   * Print a message to console
+   * Print a message to console.
    *
    * @param message To be displayed.
    * 
@@ -32,7 +32,12 @@ public class ConsoleUi {
     System.out.println("Press enter to continue...");
     scanner.nextLine();
   }
-
+  
+  /**
+   * Asking for an input of name.
+   * 
+   * @return the asked name.
+   */
   public String askForName() {
     System.out.println("Change name to: ");
     input = scanner.nextLine();
@@ -93,7 +98,7 @@ public class ConsoleUi {
     System.out.println("Name: " + member.getName());
     System.out.println("Member Id: " + member.getId());
     System.out.println("Number of boats: " + member.getNrOfBoats());
-    for(int w = 0; w < member.getBoats().size(); w++) {
+    for (int w = 0; w < member.getBoats().size(); w++) {
       System.out.print(member.getBoats().get(w).getType() + " ");
       System.out.println(member.getBoats().get(w).getLength() + "m");
     }
@@ -129,7 +134,7 @@ public class ConsoleUi {
         System.out.println(boat.getType().name() + " " + boat.getLength() + "m");
       }
     }
-      System.out.println("========================================= ");
+        System.out.println("========================================= ");
   }
 
   /**
@@ -177,7 +182,7 @@ public class ConsoleUi {
   public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats) {
     System.out.println("Choose a boat to edit");
     for (int a = 0; a < boats.size(); a++) {
-      System.out.println(boats.get(a).getType()+ " " + boats.get(a).getLength() +"m " + "(" + a +")");
+      System.out.println(boats.get(a).getType() + " " + boats.get(a).getLength() + "m " + "(" + a +")");
     }
     return input = scanner.nextLine();
   }
