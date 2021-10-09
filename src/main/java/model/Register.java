@@ -2,8 +2,6 @@ package model;
 
 import java.lang.Exception;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Register class for CRUD functionalities.
@@ -14,7 +12,6 @@ public class Register {
   public Register() {
     members = new ArrayList<>();
   }
-
   
   public ArrayList<ReadOnlyMember> getMembers() {
     ArrayList<ReadOnlyMember> readonlyMembers = new ArrayList<>();
@@ -75,12 +72,10 @@ public class Register {
    * 
    */
   public Member searchMember(String memberId) throws Exception {
-    System.out.println("Memberid: " + memberId);
     boolean found = false;
     Member member = new Member();
 
     for (int i = 0; i < members.size(); i++) {
-      System.out.println("ID? " + members.get(i).getId().toString());
       if (members.get(i).getId().toString().equals(memberId)) {
         found = true;
         member = members.get(i);

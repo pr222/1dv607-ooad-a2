@@ -2,17 +2,21 @@ package model;
 
 import java.util.ArrayList;
 
-final public class ReadOnlyMember {
+public final class ReadOnlyMember {
   private final String name;
   private final String personalNumber;
   private final Id id;
-  private ArrayList<Boat> boats = new ArrayList<>();
+  private ArrayList<ReadOnlyBoat> boats = new ArrayList<>();
   
   public ReadOnlyMember(Member member) {
     name = member.getName();
     personalNumber = member.getPersonalNumber();
     id = member.getId();
-    boats = member.getBoats();
+
+    for (Boat boat : member.getBoats()) {
+      ReadOnlyBoat readonly = new ReadOnlyBoat(boat.getType().ordinal(), boat.getLength());
+      boats.add(readonly);
+    }
   }
 
   /**
@@ -56,7 +60,7 @@ final public class ReadOnlyMember {
    *
    * @return - The boats.
    */
-  public ArrayList<Boat> getBoats() {
+  public ArrayList<ReadOnlyBoat> getBoats() {
     return boats;
   }
 }

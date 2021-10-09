@@ -1,11 +1,8 @@
 package model;
 
-/**
- * Information of boat.
- */
-public class Boat {
+public final class ReadOnlyBoat {
   private Type type;
-  private String length;
+  private final String length;
 
   /**
    * Represents a group of constanst for a boat type.
@@ -14,29 +11,21 @@ public class Boat {
     SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER
   }
 
-  public Boat(int enumIndex) {
-    System.out.println("Type values: " + Type.values());
+  public ReadOnlyBoat(int enumIndex, String length) {
     for (Type enumType : Type.values()) {
       System.out.println("Type name: " + enumType.name());
       if (enumType.ordinal() == enumIndex) {
         this.type = enumType;
       }
     }
+    this.length = length;
   }
 
   public Type getType() {
     return type;
   }
 
-  public void setType(Type type) {
-    this.type = type;
-  }
-
   public String getLength() {
     return length;
-  }
-
-  public void setLength(String length) {
-    this.length = length;
   }
 }

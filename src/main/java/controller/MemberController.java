@@ -1,7 +1,7 @@
 package controller;
 
+import java.lang.Exception;
 import java.util.ArrayList;
-
 import model.Boat;
 import model.Member;
 import model.ReadOnlyMember;
@@ -45,7 +45,7 @@ public class MemberController {
   }
 
   private void createNewMember() {
-    ArrayList<String>listOfInputRespons = ui.createMember();
+    ArrayList<String> listOfInputRespons = ui.createMember();
     String name = listOfInputRespons.get(0);
     String personalNumber = listOfInputRespons.get(1);
     register.addMember(name, personalNumber);
@@ -64,7 +64,7 @@ public class MemberController {
   }
 
   /**
-   * Member menu
+   * This method starts a member menu.
    */
   private void startMemberMenu() {
     while (!ui.wantsToGoBack()) {
@@ -78,7 +78,11 @@ public class MemberController {
         deleteMemberInfo();
         break;
       } else if (ui.wantsToAddBoat()) {
-        addBoat();
+        try {
+          addBoat();
+        } catch(Exception err) {
+          ui.showMessage(err.getMessage());
+        }
       } else if (ui.wantsToManageBoat()) {
         chooseBoatToChange();
         // List boats
@@ -123,34 +127,46 @@ public class MemberController {
   }
 
   private void chooseBoatToChange() {
-    // Flow for choosing which boat to manage
-    //
-    // String input = ui.askForInput(
-    // "Which boat information do you want to change: \n" +
+    ReadOnlyMember readonly = new ReadOnlyMember(currentMember);
+    String input = ui.chooseBoatToEdit(readonly.getBoats());
 
-    // );
-  }
-
-  private void addBoat() {
-    String input = ui.askForInput("Enter a number to choose a boat type: \n" + "Sailboat (0)\n" + "Motorsailer (1) \n"
-        + "Kayak/Canoe (2)\n" + "Other (3)");
     int i = Integer.parseInt(input);
 
-    Boat b = new Boat(i);
+    Boat chosenBoat = currentMember.getBoats().get(i);
+    
+    System.out.println(chosenBoat.getType().name() + " " + chosenBoat.getLength());
+    
+  }
 
-    String length = ui.askForInput("Enter length of the boat in meter: ");
+  private void addBoat() throws Exception {
+    ArrayList<Boat.Type> options = new ArrayList<>();
+    for (Boat.Type t : Boat.Type.values()) {
+      options.add(t);
+    }
+
+    String input = ui.askForBoatType(options);
+    int i = Integer.parseInt(input);
+
+    if (i > options.size()) {
+      throw new Exception("Not a valid boat type.");
+    }
+
+    Boat b = new Boat(i);
+    String length = ui.askForBoatLength();
     b.setLength(length);
 
     currentMember.addBoat(b);
   }
 
-  private void changeBoat() {
-    String newType = ui.askForInput("Change type: "); // ENUM
-    String newLenght = ui.askForInput("Change length: ");
+  private void editBoat() {
+    ui.chooseWhatToEditBoat(Boat.Type.values());
 
-    // member.setName(newName);
+    // String newType = ui.askForInput("Change type: "); // ENUM
+    // String newLenght = ui.askForInput("Change length: ");
 
-    ui.showMessage("Boat information is changed");
+    // // member.setName(newName);
+
+    // ui.showMessage("Boat information is changed");
     ui.promptToContinue();
   }
 

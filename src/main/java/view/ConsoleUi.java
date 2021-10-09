@@ -1,9 +1,13 @@
 package view;
 
+import java.lang.reflect.Array;
 // import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import model.Boat;
 import model.ReadOnlyMember;
+import model.ReadOnlyBoat;
 
 /**
  *  Prints menues and takes input.
@@ -126,7 +130,7 @@ public class ConsoleUi {
     System.out.println("What is your personal number?");
     input = scanner.nextLine();
     String personalNumber = input;
-    ArrayList <String> responsArrayList = new ArrayList<String>();
+    ArrayList<String> responsArrayList = new ArrayList<String>();
     responsArrayList.add(name);
     responsArrayList.add(personalNumber);
     showMessage("Member created!");
@@ -136,6 +140,45 @@ public class ConsoleUi {
   public String askForInputId() {
     System.out.println("What is your id?");
     return input = scanner.nextLine();
+  }
+
+public String askForBoatLength(){
+  System.out.println("Enter length of the boat in meter: ");
+    return input = scanner.nextLine();
+
+}
+
+  public String askForBoatType(ArrayList<Boat.Type> types) {
+    System.out.println("Enter a number to choose a boat type:");
+    for (Boat.Type type : types) {
+      System.out.println(type.name() + " (" + type.ordinal() + ")");
+    }
+
+    return input = scanner.nextLine();
+  }
+
+  public String askForBoatType(Boat.Type types) {
+    // List<String> list = Arrays.asList(Boat.Type.values());
+    for (Boat.Type t : Boat.Type.values()) {
+      System.out.println(t.name() + " (" + t.ordinal() + ")");
+    }
+
+    return input = scanner.nextLine();
+  }
+
+  public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats){
+    System.out.println("Choose a boat to edit");
+    for(int a = 0; a < boats.size(); a++) {
+      System.out.println(boats.get(a));
+    }
+		return input = scanner.nextLine();
+  }
+
+  public void chooseWhatToEditBoat(ArrayList<Boat.Type> types){
+    String length = askForBoatLength();
+    String type = askForBoatType(types);
+    System.out.println(length);
+    System.out.println(type);
   }
 
   public boolean wantsToCreateMember() {
