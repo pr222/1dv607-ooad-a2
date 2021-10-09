@@ -36,6 +36,7 @@ public class ConsoleUi {
   /**
    * Asking for an input of name.
    * 
+
    * @return the asked name.
    */
   public String askForName() {
@@ -134,7 +135,7 @@ public class ConsoleUi {
         System.out.println(boat.getType().name() + " " + boat.getLength() + "m");
       }
     }
-        System.out.println("========================================= ");
+    System.out.println("========================================= ");
   }
 
   /**
@@ -182,7 +183,7 @@ public class ConsoleUi {
   public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats) {
     System.out.println("Choose a boat to edit");
     for (int a = 0; a < boats.size(); a++) {
-      System.out.println(boats.get(a).getType() + " " + boats.get(a).getLength() + "m " + "(" + a +")");
+      System.out.println(boats.get(a).getType() + " " + boats.get(a).getLength() + "m " + "(" + a + ")");
     }
     return input = scanner.nextLine();
   }
