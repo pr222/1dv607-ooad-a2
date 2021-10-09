@@ -20,7 +20,7 @@ public class Boat {
   public Boat(int enumIndex) {
     for (Type enumType : Type.values()) {
       if (enumType.ordinal() == enumIndex) {
-      this.type = enumType;
+        this.type = enumType;
       }
     }
   }

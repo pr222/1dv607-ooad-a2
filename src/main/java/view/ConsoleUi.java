@@ -1,8 +1,6 @@
 package view;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import model.Boat;
 import model.ReadOnlyBoat;
@@ -185,9 +183,12 @@ public class ConsoleUi {
     for (int a = 0; a < boats.size(); a++) {
       System.out.println(boats.get(a).getType() + " " + a + " " + boats.get(a).getLength());
     }
-		return input = scanner.nextLine();
+    return input = scanner.nextLine();
   }
 
+  /**
+   * This method allows which boat attribute to edit.
+   */
   public void chooseWhatToEditBoat(ArrayList<Boat.Type> types) {
     String length = askForBoatLength();
     String type = askForBoatType(types);
