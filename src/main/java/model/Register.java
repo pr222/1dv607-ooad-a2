@@ -14,11 +14,17 @@ public class Register {
   public Register() {
     members = new ArrayList<>();
   }
+
   
-  
-  public List<Member> getMembers() {
-    List<Member> readonlyMembers = Collections.unmodifiableList(members);
-    
+  public ArrayList<ReadOnlyMember> getMembers() {
+    ArrayList<ReadOnlyMember> readonlyMembers = new ArrayList<>();
+
+    for (Member m : members) {
+      ReadOnlyMember readonly = new ReadOnlyMember(m);
+
+      readonlyMembers.add(readonly);
+    }
+
     return readonlyMembers;
   }
 

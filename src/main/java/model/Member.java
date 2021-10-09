@@ -90,4 +90,9 @@ public class Member {
   public int getNrOfBoats() {
     return boats.size();
   }
+
+  public ArrayList<Boat> getBoats() {
+    return boats;
+  }
+
 }

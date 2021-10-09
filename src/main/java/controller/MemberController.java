@@ -1,9 +1,10 @@
 package controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import model.Boat;
 import model.Member;
+import model.ReadOnlyMember;
 import model.Register;
 import view.ConsoleUi;
 
@@ -13,7 +14,8 @@ import view.ConsoleUi;
 public class MemberController {
   private final Register register;
   private final ConsoleUi ui;
-  
+  private Member currentMember;
+
   MemberController(Register register, ConsoleUi ui) {
     this.ui = ui;
 
@@ -29,7 +31,7 @@ public class MemberController {
       ui.showMainMenu();
 
       if (ui.wantsToCreateMember()) {
-        createMember();
+        createNewMember();
       } else if (ui.wantsToManageMember()) {
         handleMemberMenu();
       } else if (ui.wantsToShowVerboseList()) {
@@ -42,20 +44,20 @@ public class MemberController {
     }
   }
 
-  private void createMember() {
-    String name = ui.askForInput("What is your name?");
-    String personalNumber = ui.askForInput("What is your personal number?");
-
+  private void createNewMember() {
+    ArrayList<String>listOfInputRespons = ui.createMember();
+    String name = listOfInputRespons.get(0);
+    String personalNumber = listOfInputRespons.get(1);
     register.addMember(name, personalNumber);
-    ui.showMessage("Member created!");
   }
-
+  
   private void handleMemberMenu() {
     try {
-      String idInput = ui.askForInput("What is your id?");
-      Member member = register.searchMember(idInput);
-      
-      startMemberMenu(member);
+      String idInput = ui.askForInputId();
+      Member member = register.searchMember(idInput); 
+      currentMember = member;
+
+      startMemberMenu();
     } catch (Exception err) {
       ui.showMessage(err.getMessage());
     }
@@ -64,95 +66,95 @@ public class MemberController {
   /**
    * Member menu
    */
-  private void startMemberMenu(Member member) {
+  private void startMemberMenu() {
     while (!ui.wantsToGoBack()) {
       ui.memberMenu();
 
       if (ui.wantsToDisplayInfo()) {
-        createCompactInfo(member);
+        createCompactInfo();
       } else if (ui.wantsToEditMemberInformation()) {
-        editMemberInfo(member);
-      } else if (ui.wantsToDeleteMemberInformation()) {     
-        deleteMemberInfo(member);
+        editMemberInfo();
+      } else if (ui.wantsToDeleteMemberInformation()) {
+        deleteMemberInfo();
         break;
       } else if (ui.wantsToAddBoat()) {
-        addBoat(member);
+        addBoat();
       } else if (ui.wantsToManageBoat()) {
-        chooseBoatToChange(member);
+        chooseBoatToChange();
         // List boats
         // Go to boat menu
       } else if (ui.wantsToGoBack()) {
         ui.showMessage("Going back...");
+        currentMember = new Member();
       }
     }
   }
 
-  private void createCompactInfo(Member member) {
-    ui.showCompactInfo(member);
+  private void createCompactInfo() {
+    ReadOnlyMember readonly = new ReadOnlyMember(currentMember);
+    ui.showCompactInfo(readonly);
     ui.promptToContinue();
   }
 
   private void getCompactList() {
-    List list = register.getMembers();
+    ArrayList<ReadOnlyMember> list = register.getMembers();
     ui.showCompactList(list);
     ui.promptToContinue();
   }
 
-  private void getVerboseList(Member member) {
-    ui.showVerboseInfo(member);
+  private void getVerboseList() {
+    ArrayList<ReadOnlyMember> list = register.getMembers();
+
+    ui.showVerboseList(list);
     ui.promptToContinue();
   }
 
-  private void editMemberInfo(Member member) {
+  private void editMemberInfo() {
     String newName = ui.askForInput("Change name: ");
-    member.setName(newName);
+    currentMember.setName(newName);
 
     ui.showMessage("Name is changed");
     ui.promptToContinue();
   }
 
-  private void deleteMemberInfo(Member member) {
-    register.deleteMember(member);
+  private void deleteMemberInfo() {
     ui.showMessage("Deleting member...");
+    register.deleteMember(currentMember);
   }
 
-  private void addBoat(Member member) {
-    String input = ui.askForInput(
-      "Enter a number to choose a boat type: \n" + 
-      "Sailboat (0)\n" + 
-      "Motorsailer (1) \n" + 
-      "Kayak/Canoe (2)\n" +
-      "Other (3)"
-    );
-    int i = Integer.parseInt(input); 
+  private void chooseBoatToChange() {
+    // Flow for choosing which boat to manage
+    //
+    // String input = ui.askForInput(
+    // "Which boat information do you want to change: \n" +
+
+    // );
+  }
+
+  private void addBoat() {
+    String input = ui.askForInput("Enter a number to choose a boat type: \n" + "Sailboat (0)\n" + "Motorsailer (1) \n"
+        + "Kayak/Canoe (2)\n" + "Other (3)");
+    int i = Integer.parseInt(input);
 
     Boat b = new Boat(i);
 
     String length = ui.askForInput("Enter length of the boat in meter: ");
     b.setLength(length);
 
-    member.addBoat(b);
+    currentMember.addBoat(b);
   }
 
-  private void chooseBoatToChange(Member member){
-    addBoat(member);
-    // String input = ui.askForInput(
-    //   "Which boat information do you want to change: \n" + 
-       
-    // );
-  }
+  private void changeBoat() {
+    String newType = ui.askForInput("Change type: "); // ENUM
+    String newLenght = ui.askForInput("Change length: ");
 
-private void changeBoat(Member member){
-   String newType = ui.askForInput("Change type: "); //ENUM
-   String newLenght = ui.askForInput("Change length: "); 
-   
-   
-   //member.setName(newName);
+    // member.setName(newName);
 
     ui.showMessage("Boat information is changed");
     ui.promptToContinue();
-     
+  }
+
   private void quit() {
     ui.showMessage("Quitting application...");
-  } 
+  }
 }
