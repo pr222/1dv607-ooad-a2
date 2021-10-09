@@ -149,11 +149,14 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
-  public String askForBoatLength(){
+  public String askForBoatLength() {
     System.out.println("Enter length of the boat in meter: ");
     return input = scanner.nextLine();
   }
 
+  /**
+   * This method asks for a boat type.
+   */
   public String askForBoatType(ArrayList<Boat.Type> types) {
     System.out.println("Enter a number to choose a boat type:");
     for (Boat.Type type : types) {
@@ -163,6 +166,9 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
+  /**
+   * This method asks for a boat type.
+   */
   public String askForBoatType2() {
     for (Boat.Type t : Boat.Type.values()) {
       System.out.println(t.name() + " (" + t.ordinal() + ")");
@@ -171,15 +177,18 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
-  public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats){
+  /**
+   * This method allows to edit a boat.
+   */
+  public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats) {
     System.out.println("Choose a boat to edit");
-    for(int a = 0; a < boats.size(); a++) {
-      System.out.println(boats.get(a).getType() +" "+ a + " " + boats.get(a).getLength());
+    for (int a = 0; a < boats.size(); a++) {
+      System.out.println(boats.get(a).getType() + " " + a + " " + boats.get(a).getLength());
     }
 		return input = scanner.nextLine();
   }
 
-  public void chooseWhatToEditBoat(ArrayList<Boat.Type> types){
+  public void chooseWhatToEditBoat(ArrayList<Boat.Type> types) {
     String length = askForBoatLength();
     String type = askForBoatType(types);
     System.out.println(length);

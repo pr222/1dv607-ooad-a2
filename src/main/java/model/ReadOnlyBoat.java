@@ -14,6 +14,9 @@ public final class ReadOnlyBoat {
     SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER
   }
 
+  /**
+   * Constructs a read only boat with enum type and length.
+   */
   public ReadOnlyBoat(int enumIndex, String length) {
     for (Type enumType : Type.values()) {
       if (enumType.ordinal() == enumIndex) {
