@@ -2,12 +2,7 @@
 
 Project for Assignment 2
 
-A project template based on gradle and a gitlab pipeline. You should always build and run the application using gradle regularely.
+This is application has ha console ui, input is done through the terminal.
+Just run the application and make choices in the terminal.
 
-`./gradlew build`
 
-`./gradlew run -q --console=plain`
-
-Adhere to the git versioning instructions according to the assignment.
-
-Note that this assignment will be automatically checked for plagiarism of source code.

@@ -19,12 +19,12 @@ public class ConsoleUi {
   }
 
   /**
-   * Shows a message by printing it to the console.
+   * Print a message to console
    *
-   * @param message The message to show.
+   * @param message To be displayed.
    * 
    */
-  public void showMessage(String message) {
+  public void displayMessage(String message) {
     System.out.println(message);
   }
 
@@ -33,9 +33,11 @@ public class ConsoleUi {
     scanner.nextLine();
   }
 
-  public String askForInput(String question) {
-    System.out.println(question);
-    return input = scanner.nextLine();
+  public String askForName() {
+    System.out.println("Change name to: ");
+    input = scanner.nextLine();
+    System.out.println("Name is changed");
+    return input;
   }
 
   /**
@@ -43,11 +45,13 @@ public class ConsoleUi {
    */
   public void showMainMenu() {
     System.out.println("MAIN MENU ");
-    System.out.println("Create member, press 1 ");
-    System.out.println("Manage member, press 2");
-    System.out.println("Show verbose list, press 3 ");
-    System.out.println("Show compact list, press 4 ");
-    System.out.println("Quit application, press 'q' ");
+    System.out.println("========================================= ");
+    System.out.println("Create member, press (1) ");
+    System.out.println("Manage member, press (2)");
+    System.out.println("Show verbose list, press (3) ");
+    System.out.println("Show compact list, press (4) ");
+    System.out.println("Quit application, press (q) ");
+    System.out.println("========================================= ");
 
     input = scanner.nextLine();
   }
@@ -56,12 +60,14 @@ public class ConsoleUi {
    * This method prints a member menu.
    */
   public void memberMenu() { 
+    System.out.println("========================================= ");
     System.out.println("Display member information (1): ");
     System.out.println("Edit member information (2): ");
     System.out.println("Delete member (3): ");
     System.out.println("Add boat (4): ");
     System.out.println("Manage boats (5): ");
-    System.out.println("Go back ('b'): ");
+    System.out.println("Go back (b): ");
+    System.out.println("========================================= ");
 
     input = scanner.nextLine();
   }
@@ -70,9 +76,10 @@ public class ConsoleUi {
    * This method prints a boat menu.
    */
   public String boatMenu() {
+    System.out.println("========================================= ");
     System.out.println("Edit boat information (1): ");
     System.out.println("Delete boat (2): ");
-    System.out.println("Go back ('b'): ");
+    System.out.println("========================================= ");
 
     return input = scanner.nextLine();
   }
@@ -80,39 +87,38 @@ public class ConsoleUi {
   /**
    * This method prints a compact version of member information.
    */
-  public void showCompactInfo(ReadOnlyMember member) {
+  public void showMemberInfo(ReadOnlyMember member) {
+    System.out.println("========================================= ");
     System.out.println("Member");
     System.out.println("Name: " + member.getName());
     System.out.println("Member Id: " + member.getId());
     System.out.println("Number of boats: " + member.getNrOfBoats());
+    for(int w = 0; w < member.getBoats().size(); w++) {
+      System.out.print(member.getBoats().get(w).getType() + " ");
+      System.out.println(member.getBoats().get(w).getLength() + "m");
+    }
+    System.out.println("========================================= ");
   }
 
   /**
    * This method prints a compact list of member information.
    */
   public void showCompactList(ArrayList<ReadOnlyMember> members) {
+    System.out.println("========================================= ");
     System.out.println("Compact List:");
     for (int i = 0; i < members.size(); i++) {
       System.out.println("Name: " + members.get(i).getName());
       System.out.println("Member Id: " + members.get(i).getId());
       System.out.println("Number of boats: " + members.get(i).getNrOfBoats());
     }
+    System.out.println("========================================= ");
   }
 
   /**
-   * This method prints a verbose version of a member information.
-   */
-  public void showVerboseInfo(ReadOnlyMember member) {
-    System.out.println("Member");
-    System.out.println("Name: " + member.getName());
-    System.out.println("Personal number: " + member.getPersonalNumber());
-    System.out.println("Member Id: " + member.getId());
-  }
-
-  /**
-   * This method prints a verbose version of a member information.
+   * This method prints a verbose version of all member information.
    */
   public void showVerboseList(ArrayList<ReadOnlyMember> members) {
+    System.out.println("========================================= ");
     System.out.println("Verbose List:");
     for (int i = 0; i < members.size(); i++) {
       System.out.println("Name: " + members.get(i).getName());
@@ -123,12 +129,13 @@ public class ConsoleUi {
         System.out.println(boat.getType().name() + " " + boat.getLength() + "m");
       }
     }
+      System.out.println("========================================= ");
   }
 
   /**
-   * This method creates a member.
+   * Returns gathered member information for creating a member.
    */
-  public ArrayList<String> createMember() {
+  public ArrayList<String> askForMemberInformation() {
     System.out.println("What is your name?");
     input = scanner.nextLine();
     String name = input;
@@ -138,7 +145,7 @@ public class ConsoleUi {
     ArrayList<String> responsArrayList = new ArrayList<String>();
     responsArrayList.add(name);
     responsArrayList.add(personalNumber);
-    showMessage("Member created!");
+    displayMessage("Member created!");
     return responsArrayList;
   }
 
@@ -165,23 +172,12 @@ public class ConsoleUi {
   }
 
   /**
-   * This method asks for a boat type.
-   */
-  public String askForBoatType2() {
-    for (Boat.Type t : Boat.Type.values()) {
-      System.out.println(t.name() + " (" + t.ordinal() + ")");
-    }
-
-    return input = scanner.nextLine();
-  }
-
-  /**
    * This method allows to edit a boat.
    */
   public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats) {
     System.out.println("Choose a boat to edit");
     for (int a = 0; a < boats.size(); a++) {
-      System.out.println(boats.get(a).getType() + " " + a + " " + boats.get(a).getLength());
+      System.out.println(boats.get(a).getType()+ " " + boats.get(a).getLength() +"m " + "(" + a +")");
     }
     return input = scanner.nextLine();
   }

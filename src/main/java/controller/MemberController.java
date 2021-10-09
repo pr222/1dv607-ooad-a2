@@ -45,7 +45,7 @@ public class MemberController {
   }
 
   private void createNewMember() {
-    ArrayList<String> listOfInputRespons = ui.createMember();
+    ArrayList<String> listOfInputRespons = ui.askForMemberInformation();
     String name = listOfInputRespons.get(0);
     String personalNumber = listOfInputRespons.get(1);
     register.addMember(name, personalNumber);
@@ -59,7 +59,7 @@ public class MemberController {
 
       startMemberMenu();
     } catch (Exception err) {
-      ui.showMessage(err.getMessage());
+      ui.displayMessage(err.getMessage());
     }
   }
 
@@ -78,15 +78,11 @@ public class MemberController {
         deleteMemberInfo();
         break;
       } else if (ui.wantsToAddBoat()) {
-        try {
-          addBoat();
-        } catch (Exception err) {
-          ui.showMessage(err.getMessage());
-        }
+        addBoat();
       } else if (ui.wantsToManageBoat()) {
         chooseBoatToChange();
       } else if (ui.wantsToGoBack()) {
-        ui.showMessage("Going back...");
+        ui.displayMessage("Going back...");
         currentMember = new Member();
       }
     }
@@ -94,7 +90,7 @@ public class MemberController {
 
   private void createCompactInfo() {
     ReadOnlyMember readonly = new ReadOnlyMember(currentMember);
-    ui.showCompactInfo(readonly);
+    ui.showMemberInfo(readonly);
     ui.promptToContinue();
   }
 
@@ -112,15 +108,14 @@ public class MemberController {
   }
 
   private void editMemberInfo() {
-    String newName = ui.askForInput("Change name: ");
+    String newName = ui.askForName();
     currentMember.setName(newName);
 
-    ui.showMessage("Name is changed");
     ui.promptToContinue();
   }
 
   private void deleteMemberInfo() {
-    ui.showMessage("Deleting member...");
+    ui.displayMessage("Deleting member...");
     register.deleteMember(currentMember);
   }
 
@@ -144,8 +139,17 @@ public class MemberController {
       deleteBoat(boat);
     }
   }
+  
+  private void addBoat() {
+    try {
+      Boat boat = newBoat();
+      currentMember.addBoat(boat);
+    } catch (Exception err) {
+      ui.displayMessage(err.getMessage());
+    }
+  }
 
-  private void addBoat() throws Exception {
+  private Boat newBoat() throws Exception {
     ArrayList<Boat.Type> options = new ArrayList<>();
     for (Boat.Type t : Boat.Type.values()) {
       options.add(t);
@@ -162,21 +166,20 @@ public class MemberController {
     String length = ui.askForBoatLength();
     b.setLength(length);
 
-    currentMember.addBoat(b);
+    return b;
   }
 
   private void editBoat(Boat boat) {
-    String boatType = ui.askForBoatType2();
-    int typeIndex = Integer.parseInt(boatType);
-    Boat editedBoat = new Boat(typeIndex);
+    try {
+      Boat boatChanges = newBoat();
 
-    String len = ui.askForBoatLength();
-    editedBoat.setLength(len);
-  
-    currentMember.deleteBoat(boat);
-    currentMember.addBoat(editedBoat);
+      boat.setType(boatChanges.getType());
+      boat.setLength(boatChanges.getLength());
 
-    ui.promptToContinue();
+      ui.promptToContinue();
+    } catch (Exception err) {
+      ui.displayMessage(err.getMessage());
+    }
   }
 
   private void deleteBoat(Boat boat) {
@@ -184,6 +187,6 @@ public class MemberController {
   }
 
   private void quit() {
-    ui.showMessage("Quitting application...");
+    ui.displayMessage("Quitting application...");
   }
 }
