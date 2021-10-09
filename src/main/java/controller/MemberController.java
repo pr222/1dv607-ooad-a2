@@ -85,8 +85,6 @@ public class MemberController {
         }
       } else if (ui.wantsToManageBoat()) {
         chooseBoatToChange();
-        // List boats
-        // Go to boat menu
       } else if (ui.wantsToGoBack()) {
         ui.showMessage("Going back...");
         currentMember = new Member();
@@ -132,10 +130,19 @@ public class MemberController {
 
     int i = Integer.parseInt(input);
 
-    Boat chosenBoat = currentMember.getBoats().get(i);
-    
-    System.out.println(chosenBoat.getType().name() + " " + chosenBoat.getLength());
-    
+    Boat boat = currentMember.getBoats().get(i);
+
+    boatMenu(boat);
+  }
+
+  private void boatMenu(Boat boat) {
+    ui.boatMenu();
+
+    if (ui.wantsToEditBoat()) {
+      editBoat(boat);
+    } else if (ui.wantsToDeleteBoat()) {
+      deleteBoat(boat);
+    }
   }
 
   private void addBoat() throws Exception {
@@ -158,16 +165,22 @@ public class MemberController {
     currentMember.addBoat(b);
   }
 
-  private void editBoat() {
-    ui.chooseWhatToEditBoat(Boat.Type.values());
+  private void editBoat(Boat boat) {
+    String boatType = ui.askForBoatType2();
+    int typeIndex = Integer.parseInt(boatType);
+    Boat editedBoat = new Boat(typeIndex);
 
-    // String newType = ui.askForInput("Change type: "); // ENUM
-    // String newLenght = ui.askForInput("Change length: ");
+    String len = ui.askForBoatLength();
+    editedBoat.setLength(len);
+  
+    currentMember.deleteBoat(boat);
+    currentMember.addBoat(editedBoat);
 
-    // // member.setName(newName);
-
-    // ui.showMessage("Boat information is changed");
     ui.promptToContinue();
+  }
+
+  private void deleteBoat(Boat boat) {
+    currentMember.deleteBoat(boat);
   }
 
   private void quit() {

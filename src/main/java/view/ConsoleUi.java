@@ -32,7 +32,7 @@ public class ConsoleUi {
   }
 
   public void promptToContinue() {
-    System.out.println("Press any key to continue...");
+    System.out.println("Press enter to continue...");
     scanner.nextLine();
   }
 
@@ -72,12 +72,12 @@ public class ConsoleUi {
   /**
    * This method prints a boat menu.
    */
-  public void boatMenu() {
+  public String boatMenu() {
     System.out.println("Edit boat information (1): ");
     System.out.println("Delete boat (2): ");
     System.out.println("Go back ('b'): ");
 
-    input = scanner.nextLine();
+    return input = scanner.nextLine();
   }
   
   /**
@@ -118,7 +118,10 @@ public class ConsoleUi {
       System.out.println("Name: " + members.get(i).getName());
       System.out.println("Personal number: " + members.get(i).getPersonalNumber());
       System.out.println("Member Id: " + members.get(i).getId());
-      // Boat list
+      System.out.println("Boats: ");
+      for (ReadOnlyBoat boat : members.get(i).getBoats()) {
+        System.out.println(boat.getType().name() + " " + boat.getLength() + "m");
+      }
     }
   }
 
@@ -144,8 +147,7 @@ public class ConsoleUi {
 
 public String askForBoatLength(){
   System.out.println("Enter length of the boat in meter: ");
-    return input = scanner.nextLine();
-
+  return input = scanner.nextLine();
 }
 
   public String askForBoatType(ArrayList<Boat.Type> types) {
@@ -157,8 +159,7 @@ public String askForBoatLength(){
     return input = scanner.nextLine();
   }
 
-  public String askForBoatType(Boat.Type types) {
-    // List<String> list = Arrays.asList(Boat.Type.values());
+  public String askForBoatType2() {
     for (Boat.Type t : Boat.Type.values()) {
       System.out.println(t.name() + " (" + t.ordinal() + ")");
     }
@@ -169,7 +170,7 @@ public String askForBoatLength(){
   public String chooseBoatToEdit(ArrayList<ReadOnlyBoat> boats){
     System.out.println("Choose a boat to edit");
     for(int a = 0; a < boats.size(); a++) {
-      System.out.println(boats.get(a));
+      System.out.println(boats.get(a).getType() +" "+ a + " " + boats.get(a).getLength());
     }
 		return input = scanner.nextLine();
   }
@@ -225,5 +226,13 @@ public String askForBoatLength(){
 
   public boolean wantsToManageBoat() {
     return input.equals("5");
+  }
+
+  public boolean wantsToEditBoat() {
+    return input.equals("1");
+  }
+
+  public boolean wantsToDeleteBoat() {
+    return input.equals("2");
   }
 }

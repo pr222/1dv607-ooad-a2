@@ -13,7 +13,6 @@ public final class ReadOnlyBoat {
 
   public ReadOnlyBoat(int enumIndex, String length) {
     for (Type enumType : Type.values()) {
-      System.out.println("Type name: " + enumType.name());
       if (enumType.ordinal() == enumIndex) {
         this.type = enumType;
       }

@@ -15,9 +15,9 @@ public class Boat {
   }
 
   public Boat(int enumIndex) {
-    System.out.println("Type values: " + Type.values());
+    //System.out.println("Type values: " + Type.values());
     for (Type enumType : Type.values()) {
-      System.out.println("Type name: " + enumType.name());
+     // System.out.println("Type name: " + enumType.name());
       if (enumType.ordinal() == enumIndex) {
         this.type = enumType;
       }
