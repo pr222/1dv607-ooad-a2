@@ -13,6 +13,9 @@ public class Register {
     members = new ArrayList<>();
   }
   
+  /**
+   * A list of read only members.
+   */
   public ArrayList<ReadOnlyMember> getMembers() {
     ArrayList<ReadOnlyMember> readonlyMembers = new ArrayList<>();
 

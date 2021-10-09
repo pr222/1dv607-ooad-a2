@@ -1,13 +1,12 @@
 package view;
 
 import java.lang.reflect.Array;
-// import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import model.Boat;
-import model.ReadOnlyMember;
 import model.ReadOnlyBoat;
+import model.ReadOnlyMember;
 
 /**
  *  Prints menues and takes input.
@@ -112,6 +111,9 @@ public class ConsoleUi {
     System.out.println("Member Id: " + member.getId());
   }
 
+  /**
+   * This method prints a verbose version of a member information.
+   */
   public void showVerboseList(ArrayList<ReadOnlyMember> members) {
     System.out.println("Verbose List:");
     for (int i = 0; i < members.size(); i++) {
@@ -125,7 +127,9 @@ public class ConsoleUi {
     }
   }
 
-
+  /**
+   * This method creates a member.
+   */
   public ArrayList<String> createMember() {
     System.out.println("What is your name?");
     input = scanner.nextLine();
@@ -145,10 +149,10 @@ public class ConsoleUi {
     return input = scanner.nextLine();
   }
 
-public String askForBoatLength(){
-  System.out.println("Enter length of the boat in meter: ");
-  return input = scanner.nextLine();
-}
+  public String askForBoatLength(){
+    System.out.println("Enter length of the boat in meter: ");
+    return input = scanner.nextLine();
+  }
 
   public String askForBoatType(ArrayList<Boat.Type> types) {
     System.out.println("Enter a number to choose a boat type:");
@@ -202,7 +206,6 @@ public String askForBoatLength(){
     return input.equals("q");
   }
 
-  // För Manage membermeny
   public boolean wantsToDisplayInfo() {
     return input.equals("1");
   }
@@ -219,7 +222,6 @@ public String askForBoatLength(){
     return input.equals("b");
   }
 
-  // För boat
   public boolean wantsToAddBoat() {
     return input.equals("4");
   }

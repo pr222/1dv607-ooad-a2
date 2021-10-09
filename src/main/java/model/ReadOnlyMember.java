@@ -2,12 +2,18 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Reads information about member.
+ */
 public final class ReadOnlyMember {
   private final String name;
   private final String personalNumber;
   private final Id id;
   private ArrayList<ReadOnlyBoat> boats = new ArrayList<>();
   
+  /**
+   * Constructs a read only member.
+   */
   public ReadOnlyMember(Member member) {
     name = member.getName();
     personalNumber = member.getPersonalNumber();

@@ -80,7 +80,7 @@ public class MemberController {
       } else if (ui.wantsToAddBoat()) {
         try {
           addBoat();
-        } catch(Exception err) {
+        } catch (Exception err) {
           ui.showMessage(err.getMessage());
         }
       } else if (ui.wantsToManageBoat()) {

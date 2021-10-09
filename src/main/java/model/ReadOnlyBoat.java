@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Reads information about boat.
+ */
 public final class ReadOnlyBoat {
   private Type type;
   private final String length;

@@ -14,6 +14,9 @@ public class Member {
   public Member() {
   }
   
+  /**
+   * Consstructs a member.
+   */
   public Member(String name, String personalNumber) {
     this.name = name;
     this.personalNumber = personalNumber;

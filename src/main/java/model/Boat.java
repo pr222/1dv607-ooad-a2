@@ -14,12 +14,13 @@ public class Boat {
     SAILBOAT, MOTORSAILER, KAYAK_CANOE, OTHER
   }
 
+  /**
+   * Constructs a boat with an enum type.
+   */
   public Boat(int enumIndex) {
-    //System.out.println("Type values: " + Type.values());
     for (Type enumType : Type.values()) {
-     // System.out.println("Type name: " + enumType.name());
       if (enumType.ordinal() == enumIndex) {
-        this.type = enumType;
+      this.type = enumType;
       }
     }
   }
