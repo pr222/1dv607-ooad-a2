@@ -1,7 +1,7 @@
 package model;
 
+import java.lang.Math;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Generates Id:s with the format "123ABC".
@@ -16,20 +16,20 @@ public class IdGenerator {
   /**
    * Makes ids for members.
    */
-  public Id generateId() {
-    Random random = new Random();
-    
+  public Id generateId() {  
     ArrayList<Character> idList = new ArrayList<Character>();
 
     for (int p = 0; p < 3; p++) {
-      int n = random.nextInt(10); 
+      double d = Math.random() * 10; 
+      int i = (int) d;  
 
-      idList.add(number[n]);
+      idList.add(number[i]);
     }
    
     for (int w = 0; w < 3; w++) {
-      int n = random.nextInt(26); 
-      idList.add(alphabet[n]); 
+      double d = Math.random() * 26; 
+      int i = (int) d;  
+      idList.add(alphabet[i]); 
     }
 
     StringBuilder builder = new StringBuilder(idList.size());

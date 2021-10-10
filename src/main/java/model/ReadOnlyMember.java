@@ -67,6 +67,7 @@ public final class ReadOnlyMember {
    * @return - The boats.
    */
   public ArrayList<ReadOnlyBoat> getBoats() {
-    return boats;
+    ArrayList<ReadOnlyBoat> copiesOfBoats = new ArrayList<>(boats);
+    return copiesOfBoats;
   }
 }

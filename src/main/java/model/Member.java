@@ -94,8 +94,13 @@ public class Member {
     return boats.size();
   }
 
+  /**
+   * Return copy of boats.
+   */
   public ArrayList<Boat> getBoats() {
-    return boats;
+    ArrayList<Boat> boatCopies = new ArrayList<>(boats);
+
+    return boatCopies;
   }
 
 }
