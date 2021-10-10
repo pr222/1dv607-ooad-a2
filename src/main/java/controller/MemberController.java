@@ -4,8 +4,8 @@ import java.lang.Exception;
 import java.util.ArrayList;
 import model.Boat;
 import model.Member;
-import model.ReadOnlyMember;
 import model.ReadOnlyBoat;
+import model.ReadOnlyMember;
 import model.Register;
 import view.ConsoleUi;
 
