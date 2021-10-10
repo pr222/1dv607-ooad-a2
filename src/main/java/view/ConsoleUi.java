@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.Boat;
 import model.ReadOnlyBoat;
 import model.ReadOnlyMember;
 
@@ -81,13 +80,13 @@ public class ConsoleUi {
   /**
    * This method prints a boat menu.
    */
-  public String boatMenu() {
+  public void boatMenu() {
     System.out.println("========================================= ");
     System.out.println("Edit boat information (1): ");
     System.out.println("Delete boat (2): ");
     System.out.println("========================================= ");
 
-    return input = scanner.nextLine();
+    input = scanner.nextLine();
   }
   
   /**
@@ -168,9 +167,9 @@ public class ConsoleUi {
   /**
    * This method asks for a boat type.
    */
-  public String askForBoatType(ArrayList<Boat.Type> types) {
+  public String askForBoatType(ArrayList<ReadOnlyBoat.Type> types) {
     System.out.println("Enter a number to choose a boat type:");
-    for (Boat.Type type : types) {
+    for (ReadOnlyBoat.Type type : types) {
       System.out.println(type.name() + " (" + type.ordinal() + ")");
     }
 
@@ -191,7 +190,7 @@ public class ConsoleUi {
   /**
    * This method allows which boat attribute to edit.
    */
-  public void chooseWhatToEditBoat(ArrayList<Boat.Type> types) {
+  public void chooseWhatToEditBoat(ArrayList<ReadOnlyBoat.Type> types) {
     String length = askForBoatLength();
     String type = askForBoatType(types);
     System.out.println(length);

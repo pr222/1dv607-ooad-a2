@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 import model.ReadOnlyMember;
+import model.ReadOnlyBoat;
 import model.Register;
 import view.ConsoleUi;
 
@@ -150,8 +151,8 @@ public class MemberController {
   }
 
   private Boat newBoat() throws Exception {
-    ArrayList<Boat.Type> options = new ArrayList<>();
-    for (Boat.Type t : Boat.Type.values()) {
+    ArrayList<ReadOnlyBoat.Type> options = new ArrayList<>();
+    for (ReadOnlyBoat.Type t : ReadOnlyBoat.Type.values()) {
       options.add(t);
     }
 
