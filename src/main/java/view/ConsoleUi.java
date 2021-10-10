@@ -151,7 +151,7 @@ public class ConsoleUi {
     ArrayList<String> responsArrayList = new ArrayList<String>();
     responsArrayList.add(name);
     responsArrayList.add(personalNumber);
-    displayMessage("Member created!");
+    displayMessage("Creating member");
     return responsArrayList;
   }
 
